@@ -5,7 +5,7 @@ import styles from './sidebar.module.scss';
 
 export default function Sidebar() {
 	return (
-		<aside className={styles.sidebar}>
+		<aside>
 			<div className={styles.logo}>
 				Course<span>Hub</span>
 			</div>

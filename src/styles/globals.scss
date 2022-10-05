@@ -5,6 +5,8 @@
 }
 
 body {
+	display: grid;
+	grid-template-columns: auto 1fr;
 	max-width: 1450px;
 	margin: 0 auto;
 	padding: 35px 30px 0 30px;
