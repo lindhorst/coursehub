@@ -1,0 +1,24 @@
+.menu {
+	display: inline-grid;
+	row-gap: 20px;
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--grey);
+
+	li {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+		justify-content: left;
+		column-gap: 20px;
+		cursor: pointer;
+
+		&:hover {
+			color: var(--violet);
+
+			svg {
+				fill: var(--violet);
+			}
+		}
+	}
+}
