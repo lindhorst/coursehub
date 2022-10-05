@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { useAppSelector } from '../../redux/hooks';
 
@@ -23,14 +23,14 @@ export default function Menu() {
 			{firstCategories.map(({ icon, text }, i) => (
 				<Fragment key={i}>
 					<li
-						className={i == categoryId ? styles.active : undefined}
+						className={i === categoryId ? styles.active : undefined}
 						onClick={() => setCategoryId(i)}
 					>
 						{icon}
 						{text}
 					</li>
 
-					{categories.length != 0 && i == categoryId && (
+					{categories.length !== 0 && i === categoryId && (
 						<ul>
 							{categories[categoryId].map((item, i) => (
 								<li key={i}>{item._id.secondCategory}</li>
