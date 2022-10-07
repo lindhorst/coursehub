@@ -8,32 +8,54 @@ import { ReactComponent as SchoolIcon } from './icons/school.svg';
 
 import styles from './menu.module.scss';
 
-const firstCategories = [
+const firstLevel = [
 	{ icon: <CoursesIcon />, text: 'Курсы' },
 	{ icon: <SchoolIcon />, text: 'Для школьников' },
 	{ icon: <OthersIcon />, text: 'Прочее' }
 ];
 
 export default function Menu() {
-	const { categories } = useAppSelector((state) => state.categories);
-	const [categoryId, setCategoryId] = useState(0);
+	const { categories: secondLevel } = useAppSelector(
+		(state) => state.categories
+	);
+	const [category, setCategory] = useState(0);
+	const [secondCategory, setSecondCategory] = useState<null | number>(null);
 
-	return (
-		<ul className={styles.menu}>
-			{firstCategories.map(({ icon, text }, i) => (
+	const buildFirstLevel = () => (
+		<ul className={styles.first}>
+			{firstLevel.map(({ icon, text }, i) => (
 				<Fragment key={i}>
 					<li
-						className={i === categoryId ? styles.active : undefined}
-						onClick={() => setCategoryId(i)}
+						className={i === category ? styles.active : undefined}
+						onClick={() => {
+							setCategory(i);
+							setSecondCategory(null);
+						}}
 					>
 						{icon}
 						{text}
 					</li>
 
-					{categories.length !== 0 && i === categoryId && (
-						<ul>
-							{categories[categoryId].map((item, i) => (
-								<li key={i}>{item._id.secondCategory}</li>
+					{secondLevel.length !== 0 &&
+						i === category &&
+						buildSecondLevel()}
+				</Fragment>
+			))}
+		</ul>
+	);
+
+	const buildSecondLevel = () => (
+		<ul className={styles.second}>
+			{secondLevel[category].map((item, n) => (
+				<Fragment key={n}>
+					<li onClick={() => setSecondCategory(n)}>
+						{item._id.secondCategory}
+					</li>
+
+					{n === secondCategory && (
+						<ul className={styles.thrid}>
+							{item.pages.map((item) => (
+								<li key={item._id}>{item.category}</li>
 							))}
 						</ul>
 					)}
@@ -41,4 +63,6 @@ export default function Menu() {
 			))}
 		</ul>
 	);
+
+	return buildFirstLevel();
 }

@@ -13,7 +13,7 @@ specifiers:
   redux-saga: ^1.2.1
   sass: ^1.55.0
   typescript: ^4.8.4
-  vite: ^3.1.4
+  vite: ^3.1.6
   vite-plugin-svgr: ^2.2.1
 
 dependencies:
@@ -26,13 +26,13 @@ dependencies:
 devDependencies:
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
-  '@vitejs/plugin-react': 2.1.0_vite@3.1.4
+  '@vitejs/plugin-react': 2.1.0_vite@3.1.6
   eslint: 8.24.0
   eslint-config-react-app: 7.0.1_6rwvcx6rtr56rkv6gud5x67qpm
   sass: 1.55.0
   typescript: 4.8.4
-  vite: 3.1.4_sass@1.55.0
-  vite-plugin-svgr: 2.2.1_7ylftum5rrg5yeelpdsep35na4
+  vite: 3.1.6_sass@1.55.0
+  vite-plugin-svgr: 2.2.1_sqpzzaur4waufjpalpajzllojm
 
 packages:
 
@@ -1895,7 +1895,7 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-react/2.1.0_vite@3.1.4:
+  /@vitejs/plugin-react/2.1.0_vite@3.1.6:
     resolution: {integrity: sha512-am6rPyyU3LzUYne3Gd9oj9c4Rzbq5hQnuGXSMT6Gujq45Il/+bunwq3lrB7wghLkiF45ygMwft37vgJ/NE8IAA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -1908,7 +1908,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.18.6_@babel+core@7.19.3
       magic-string: 0.26.6
       react-refresh: 0.14.0
-      vite: 3.1.4_sass@1.55.0
+      vite: 3.1.6_sass@1.55.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1981,7 +1981,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
       get-intrinsic: 1.1.3
       is-string: 1.0.7
     dev: true
@@ -1997,7 +1997,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
       es-shim-unscopables: 1.0.0
     dev: true
 
@@ -2007,7 +2007,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
       es-shim-unscopables: 1.0.0
     dev: true
 
@@ -2132,7 +2132,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001416
-      electron-to-chromium: 1.4.273
+      electron-to-chromium: 1.4.275
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
     dev: true
@@ -2282,7 +2282,7 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
     dev: true
 
   /debug/4.3.4:
@@ -2330,8 +2330,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /electron-to-chromium/1.4.273:
-    resolution: {integrity: sha512-iEx72lv4P85PJ8HA9KEAss4o6ESK+hcxzM1cksZDo0H8KekaI+cloQyxOCASmHQO9ogmGyEELtBzxqqdeNwIgQ==}
+  /electron-to-chromium/1.4.275:
+    resolution: {integrity: sha512-aJeQQ+Hl9Jyyzv4chBqYJwmVRY46N5i2BEX5Cuyk/5gFCUZ5F3i7Hnba6snZftWla7Gglwc5pIgcd+E7cW+rPg==}
     dev: true
 
   /emoji-regex/9.2.2:
@@ -2349,8 +2349,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /es-abstract/1.20.3:
-    resolution: {integrity: sha512-AyrnaKVpMzljIdwjzrj+LxGmj8ik2LckwXacHqrJJ/jxz6dDDBcZ7I7nlHM0FvEW8MfbWJwOd+yT2XzYW49Frw==}
+  /es-abstract/1.20.4:
+    resolution: {integrity: sha512-0UtvRN79eMe2L+UNEF1BwRe364sj/DXhQ/k5FmivgoSdpM90b8Jc0mDzKMGo7QS0BVbOP/bTwBKNnDc9rNzaPA==}
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
@@ -3037,7 +3037,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
       functions-have-names: 1.2.3
     dev: true
 
@@ -3470,6 +3470,10 @@ packages:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
 
+  /ms/2.1.3:
+    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+    dev: true
+
   /nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -3519,7 +3523,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
     dev: true
 
   /object.fromentries/2.0.5:
@@ -3528,14 +3532,14 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
     dev: true
 
   /object.hasown/1.1.1:
     resolution: {integrity: sha512-LYLe4tivNQzq4JdaWW6WO3HMZZJWzkkH8fnI6EebWl0VZth2wL2Lovm74ep2/gZzlaTdV62JZHEqHQ2yVn8Q/A==}
     dependencies:
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
     dev: true
 
   /object.values/1.1.5:
@@ -3544,7 +3548,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
     dev: true
 
   /once/1.4.0:
@@ -3944,7 +3948,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
       get-intrinsic: 1.1.3
       has-symbols: 1.0.3
       internal-slot: 1.0.3
@@ -3957,7 +3961,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
     dev: true
 
   /string.prototype.trimstart/1.0.5:
@@ -3965,7 +3969,7 @@ packages:
     dependencies:
       call-bind: 1.0.2
       define-properties: 1.1.4
-      es-abstract: 1.20.3
+      es-abstract: 1.20.4
     dev: true
 
   /strip-ansi/6.0.1:
@@ -4138,21 +4142,21 @@ packages:
       react: 18.2.0
     dev: false
 
-  /vite-plugin-svgr/2.2.1_7ylftum5rrg5yeelpdsep35na4:
+  /vite-plugin-svgr/2.2.1_sqpzzaur4waufjpalpajzllojm:
     resolution: {integrity: sha512-+EqwahbwjETJH/ssA/66dNYyKN1cO0AStq96MuXmq5maU7AePBMf2lDKfQna49tJZAjtRz+R899BWCsUUP45Fg==}
     peerDependencies:
       vite: ^2.6.0 || 3
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@svgr/core': 6.4.0_@babel+core@7.19.3
-      vite: 3.1.4_sass@1.55.0
+      vite: 3.1.6_sass@1.55.0
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
     dev: true
 
-  /vite/3.1.4_sass@1.55.0:
-    resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==}
+  /vite/3.1.6_sass@1.55.0:
+    resolution: {integrity: sha512-qMXIwnehvvcK5XfJiXQUiTxoYAEMKhM+jqCY6ZSTKFBKu1hJnAKEzP3AOcnTerI0cMZYAaJ4wpW1wiXLMDt4mA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
