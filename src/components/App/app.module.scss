@@ -1,9 +1,22 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: 230px 1fr;
+
+	max-width: 1450px;
+	margin: 0 auto;
+	padding: 35px 30px 0;
+
+	font-family: 'Noto Sans', sans-serif;
+	color: #3b434e;
+}
+
 .logo {
-	text-align: center;
 	margin-bottom: 20px;
+
 	font-size: 30px;
 	font-weight: 700;
 	color: var(--violet);
+	text-align: center;
 
 	span {
 		color: var(--grey);

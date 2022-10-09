@@ -3,7 +3,7 @@ import styles from './search.module.scss';
 
 export default function Search() {
 	return (
-		<form className={styles.search}>
+		<form className={styles.form}>
 			<input type="text" placeholder="Поиск..." />
 
 			<button>

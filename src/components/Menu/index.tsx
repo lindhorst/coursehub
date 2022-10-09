@@ -52,16 +52,17 @@ export default function Menu() {
 		}
 	});
 
+	useEffect(() => {
+		setSecondCategory(null);
+	}, [category]);
+
 	const buildFirstLevel = () => (
 		<ul className={styles.first}>
 			{firstLevel.map(({ icon, text, id }) => (
 				<Fragment key={id}>
 					<li
 						className={id === category ? styles.active : undefined}
-						onClick={() => {
-							setCategory(id);
-							setSecondCategory(null);
-						}}
+						onClick={() => setCategory(id)}
 					>
 						{icon}
 						{text}
@@ -75,13 +76,13 @@ export default function Menu() {
 
 	const buildSecondLevel = () => (
 		<ul className={styles.second}>
-			{secondLevel[category].map((item, n) => (
-				<Fragment key={n}>
-					<li onClick={() => setSecondCategory(n)}>
+			{secondLevel[category].map((item, i) => (
+				<Fragment key={i}>
+					<li onClick={() => setSecondCategory(i)}>
 						{item._id.secondCategory}
 					</li>
 
-					{n === secondCategory && (
+					{i === secondCategory && (
 						<ul className={styles.thrid}>
 							{item.pages.map(item => (
 								<li key={item._id}>{item.category}</li>

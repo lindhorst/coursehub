@@ -1,8 +1,8 @@
 @for $i from 3 through 7 {
 	@font-face {
 		font-family: 'Noto Sans';
-		font-style: normal;
 		font-weight: #{$i}00;
+		font-style: normal;
 		src: url('../fonts/NotoSans-#{$i}00.woff2') format('woff2');
 	}
 }

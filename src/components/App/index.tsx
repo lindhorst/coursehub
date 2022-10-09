@@ -5,14 +5,16 @@ import styles from './app.module.scss';
 
 export default function App() {
 	return (
-		<aside>
-			<div className={styles.logo}>
-				Course<span>Hub</span>
-			</div>
+		<div className={styles.wrapper}>
+			<aside>
+				<div className={styles.logo}>
+					Course<span>Hub</span>
+				</div>
 
-			<Search />
+				<Search />
 
-			<Menu />
-		</aside>
+				<Menu />
+			</aside>
+		</div>
 	);
 }
