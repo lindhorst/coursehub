@@ -7,7 +7,7 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"lint": "stylelint \"**/*.scss\" || eslint --ext .ts,.tsx src"
+		"lint": "tsc && eslint --ext .ts,.tsx src && stylelint \"**/*.scss\""
 	},
 	"dependencies": {
 		"react": "^18.2.0",
@@ -21,14 +21,14 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-config-react-app": "^7.0.1",
 		"sass": "^1.55.0",
-		"stylelint": "^14.13.0",
+		"stylelint": "^14.14.0",
 		"stylelint-config-clean-order": "^0.9.0",
 		"stylelint-config-prettier": "^9.0.3",
 		"stylelint-config-standard-scss": "^5.0.0",
 		"typescript": "^4.8.4",
 		"typescript-plugin-css-modules": "^3.4.0",
-		"vite": "^3.1.6",
-		"vite-plugin-svgr": "^2.2.1"
+		"vite": "^3.1.8",
+		"vite-plugin-svgr": "^2.2.2"
 	},
 	"eslintConfig": {
 		"extends": [

@@ -6,13 +6,13 @@ import { ReactComponent as SchoolIcon } from './icons/school.svg';
 
 import styles from './menu.module.scss';
 
-const firstLevel = [
+const сategories = [
 	{ icon: <CoursesIcon />, text: 'Курсы', id: 0 },
 	{ icon: <SchoolIcon />, text: 'Для школьников', id: 4 },
 	{ icon: <OthersIcon />, text: 'Прочее', id: 1 }
 ];
 
-interface SecondLevel {
+interface Subcategories {
 	_id: { secondCategory: string };
 	pages: {
 		alias: string;
@@ -24,9 +24,8 @@ interface SecondLevel {
 
 export default function Menu() {
 	const [category, setCategory] = useState(0);
-	const [secondCategory, setSecondCategory] = useState<null | number>(null);
-	const [secondLevel, setSecondLevel] = useState<{
-		[key: number]: SecondLevel[];
+	const [subcategories, setSubcategories] = useState<{
+		[key: number]: Subcategories[];
 	}>({
 		0: [],
 		4: [],
@@ -34,7 +33,7 @@ export default function Menu() {
 	});
 
 	useEffect(() => {
-		if (!secondLevel[category].length) {
+		if (!subcategories[category].length) {
 			fetch(import.meta.env.VITE_PUBLIC_DOMAIN + '/api/top-page/find', {
 				method: 'POST',
 				headers: {
@@ -44,21 +43,17 @@ export default function Menu() {
 			})
 				.then(res => res.json())
 				.then(data => {
-					setSecondLevel(item => {
-						item[category] = data;
-						return { ...item };
+					setSubcategories(array => {
+						array[category] = data;
+						return { ...array };
 					});
 				});
 		}
 	});
 
-	useEffect(() => {
-		setSecondCategory(null);
-	}, [category]);
-
-	const buildFirstLevel = () => (
+	return (
 		<ul className={styles.first}>
-			{firstLevel.map(({ icon, text, id }) => (
+			{сategories.map(({ icon, text, id }) => (
 				<Fragment key={id}>
 					<li
 						className={id === category ? styles.active : undefined}
@@ -68,21 +63,38 @@ export default function Menu() {
 						{text}
 					</li>
 
-					{id === category && buildSecondLevel()}
+					{id === category && (
+						<Submenu
+							subcategories={subcategories}
+							firstCategory={category}
+						/>
+					)}
 				</Fragment>
 			))}
 		</ul>
 	);
+}
 
-	const buildSecondLevel = () => (
+const Submenu = ({
+	firstCategory,
+	subcategories
+}: {
+	firstCategory: number;
+	subcategories: {
+		[key: number]: Subcategories[];
+	};
+}) => {
+	const [category, setCategory] = useState<null | number>(null);
+
+	return (
 		<ul className={styles.second}>
-			{secondLevel[category].map((item, i) => (
+			{subcategories[firstCategory].map((item, i) => (
 				<Fragment key={i}>
-					<li onClick={() => setSecondCategory(i)}>
+					<li onClick={() => setCategory(i)}>
 						{item._id.secondCategory}
 					</li>
 
-					{i === secondCategory && (
+					{i === category && (
 						<ul className={styles.thrid}>
 							{item.pages.map(item => (
 								<li key={item._id}>{item.category}</li>
@@ -93,6 +105,4 @@ export default function Menu() {
 			))}
 		</ul>
 	);
-
-	return buildFirstLevel();
-}
+};
