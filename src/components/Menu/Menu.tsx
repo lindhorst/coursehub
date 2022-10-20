@@ -52,12 +52,12 @@ export default function Menu() {
 	return (
 		<ul className={styles.wrapper}>
 			{firstCategories.map(({ category, icon, text, path }, i) => {
-				if (activeCategory === undefined && pathname !== '/') {
-					const firstPath = pathname.slice(
-						pathname.indexOf('/'),
-						pathname.lastIndexOf('/')
-					);
+				const firstPath = pathname.slice(
+					pathname.indexOf('/'),
+					pathname.lastIndexOf('/')
+				);
 
+				if (activeCategory === undefined && pathname !== '/') {
 					firstPath === path && setActiveCategory(category);
 				}
 
@@ -74,11 +74,13 @@ export default function Menu() {
 							{text}
 						</li>
 
-						{category === activeCategory && (
+						{category === activeCategory || firstPath === path ? (
 							<LevelSecond
 								secondCategories={secondCategories}
 								firstActiveCategory={category}
 							/>
+						) : (
+							''
 						)}
 					</Fragment>
 				);

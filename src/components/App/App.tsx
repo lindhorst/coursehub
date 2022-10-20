@@ -1,7 +1,7 @@
 import Menu from '../Menu/Menu';
 import Search from '../Search/Search';
 
-import styles from './app.module.scss';
+import styles from './App.module.scss';
 
 export default function App() {
 	return (
