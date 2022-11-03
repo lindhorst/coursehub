@@ -17,8 +17,7 @@ const firstCategories = [
 ];
 
 export default function Menu() {
-	const { pathname } = useLocation();
-	const [activeCategory, setActiveCategory] = useState<number>();
+	const [activeCategory, setActiveCategory] = useState<number | null>(null);
 	const [secondCategories, setSecondCategories] = useState<{
 		[key: number]: [];
 	}>({
@@ -26,19 +25,27 @@ export default function Menu() {
 		4: [],
 		1: []
 	});
+	const { pathname } = useLocation();
+	const firstPath = pathname.slice(
+		pathname.indexOf('/'),
+		pathname.lastIndexOf('/')
+	);
 
 	useEffect(() => {
 		if (
-			activeCategory !== undefined &&
-			!secondCategories[activeCategory].length
+			activeCategory !== null &&
+			!secondCategories[activeCategory]?.length
 		) {
-			fetch(import.meta.env.VITE_PUBLIC_DOMAIN + '/api/top-page/find', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ firstCategory: activeCategory })
-			})
+			fetch(
+				import.meta.env['VITE_PUBLIC_DOMAIN'] + '/api/top-page/find',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ firstCategory: activeCategory })
+				}
+			)
 				.then(res => res.json())
 				.then(data => {
 					setSecondCategories(array => {
@@ -52,19 +59,20 @@ export default function Menu() {
 	return (
 		<ul className={styles.wrapper}>
 			{firstCategories.map(({ category, icon, text, path }, i) => {
-				const firstPath = pathname.slice(
-					pathname.indexOf('/'),
-					pathname.lastIndexOf('/')
-				);
-
-				if (activeCategory === undefined && pathname !== '/') {
+				if (activeCategory === null && pathname !== '/') {
 					firstPath === path && setActiveCategory(category);
 				}
 
 				return (
 					<Fragment key={i}>
 						<li
-							onClick={() => setActiveCategory(category)}
+							onClick={() =>
+								setActiveCategory(
+									category === activeCategory
+										? null
+										: category
+								)
+							}
 							className={
 								styles.item +
 								(activeCategory === category ? ' active' : '')

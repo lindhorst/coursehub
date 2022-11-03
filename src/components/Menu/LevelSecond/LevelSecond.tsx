@@ -24,34 +24,31 @@ export default function LevelSecond({
 		}[];
 	};
 }) {
-	const [activeCategory, setActiveCategory] = useState<number>();
+	const [activeCategory, setActiveCategory] = useState<number | null>(null);
 	const { pathname } = useLocation();
+	const secondPath = pathname.slice(pathname.lastIndexOf('/') + 1);
 
 	return (
 		<ul className={styles.wrapper}>
-			{secondCategories[firstActiveCategory].map((item, i) => {
-				if (activeCategory === undefined && pathname !== '/') {
-					const secondPath = pathname.slice(
-						pathname.lastIndexOf('/') + 1
-					);
-
-					const res = item.pages.some(
-						({ alias }) => alias === secondPath
-					);
-
-					res && setActiveCategory(i);
-				}
+			{secondCategories[firstActiveCategory]?.map((item, i) => {
+				const res = item.pages.some(
+					({ alias }) => alias === secondPath
+				);
 
 				return (
 					<Fragment key={i}>
 						<li
 							className={styles.item}
-							onClick={() => setActiveCategory(i)}
+							onClick={() =>
+								setActiveCategory(
+									i === activeCategory ? null : i
+								)
+							}
 						>
 							{item._id.secondCategory}
 						</li>
 
-						{activeCategory === i && (
+						{(activeCategory === i || res) && (
 							<LevelThree
 								pages={item.pages}
 								firstActiveCategory={firstActiveCategory}
