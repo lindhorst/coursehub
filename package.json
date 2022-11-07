@@ -15,13 +15,13 @@
 		"react-router-dom": "^6.4.3"
 	},
 	"devDependencies": {
-		"@types/react": "^18.0.24",
+		"@types/react": "^18.0.25",
 		"@types/react-dom": "^18.0.8",
 		"@vitejs/plugin-react": "^2.2.0",
-		"eslint": "^8.26.0",
+		"eslint": "^8.27.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-config-react-app": "^7.0.1",
-		"sass": "^1.55.0",
+		"sass": "^1.56.0",
 		"stylelint": "^14.14.1",
 		"stylelint-config-clean-order": "^0.9.0",
 		"stylelint-config-prettier": "^9.0.3",

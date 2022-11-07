@@ -26,7 +26,7 @@ export default function Menu() {
 		1: []
 	});
 	const { pathname } = useLocation();
-	const firstPath = pathname.slice(
+	const currentPath = pathname.slice(
 		pathname.indexOf('/'),
 		pathname.lastIndexOf('/')
 	);
@@ -36,16 +36,13 @@ export default function Menu() {
 			activeCategory !== null &&
 			!secondCategories[activeCategory]?.length
 		) {
-			fetch(
-				import.meta.env['VITE_PUBLIC_DOMAIN'] + '/api/top-page/find',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({ firstCategory: activeCategory })
-				}
-			)
+			fetch(import.meta.env.VITE_PUBLIC_DOMAIN + '/api/top-page/find', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ firstCategory: activeCategory })
+			})
 				.then(res => res.json())
 				.then(data => {
 					setSecondCategories(array => {
@@ -59,8 +56,8 @@ export default function Menu() {
 	return (
 		<ul className={styles.wrapper}>
 			{firstCategories.map(({ category, icon, text, path }, i) => {
-				if (activeCategory === null && pathname !== '/') {
-					firstPath === path && setActiveCategory(category);
+				if (activeCategory === null && currentPath === path) {
+					setActiveCategory(category);
 				}
 
 				return (
@@ -75,20 +72,22 @@ export default function Menu() {
 							}
 							className={
 								styles.item +
-								(activeCategory === category ? ' active' : '')
+								(category === activeCategory ||
+								path === currentPath
+									? ' active'
+									: '')
 							}
 						>
 							{icon}
 							{text}
 						</li>
 
-						{category === activeCategory || firstPath === path ? (
+						{(category === activeCategory ||
+							path === currentPath) && (
 							<LevelSecond
 								secondCategories={secondCategories}
 								firstActiveCategory={category}
 							/>
-						) : (
-							''
 						)}
 					</Fragment>
 				);

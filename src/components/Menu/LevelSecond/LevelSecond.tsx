@@ -26,13 +26,13 @@ export default function LevelSecond({
 }) {
 	const [activeCategory, setActiveCategory] = useState<number | null>(null);
 	const { pathname } = useLocation();
-	const secondPath = pathname.slice(pathname.lastIndexOf('/') + 1);
+	const currentPath = pathname.slice(pathname.lastIndexOf('/') + 1);
 
 	return (
 		<ul className={styles.wrapper}>
 			{secondCategories[firstActiveCategory]?.map((item, i) => {
 				const res = item.pages.some(
-					({ alias }) => alias === secondPath
+					({ alias }) => alias === currentPath
 				);
 
 				return (
@@ -48,7 +48,7 @@ export default function LevelSecond({
 							{item._id.secondCategory}
 						</li>
 
-						{(activeCategory === i || res) && (
+						{(i === activeCategory || res) && (
 							<LevelThree
 								pages={item.pages}
 								firstActiveCategory={firstActiveCategory}
