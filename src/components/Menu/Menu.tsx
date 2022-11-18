@@ -31,6 +31,8 @@ export default function Menu() {
 		pathname.lastIndexOf('/')
 	);
 
+	useEffect(() => setActiveCategory(null), [pathname]);
+
 	useEffect(() => {
 		if (
 			activeCategory !== null &&

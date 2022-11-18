@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import LevelThree from '../LevelThree/LevelThree';
@@ -27,6 +27,8 @@ export default function LevelSecond({
 	const [activeCategory, setActiveCategory] = useState<number | null>(null);
 	const { pathname } = useLocation();
 	const currentPath = pathname.slice(pathname.lastIndexOf('/') + 1);
+
+	useEffect(() => setActiveCategory(null), [pathname]);
 
 	return (
 		<ul className={styles.wrapper}>
