@@ -5,7 +5,7 @@ import styles from './Search.module.scss';
 export default function Search() {
 	return (
 		<form className={styles.form}>
-			<input type="text" placeholder="Поиск..." />
+			<input type="text" placeholder="Поиск категорий" />
 
 			<button>
 				<SearchIcon />
