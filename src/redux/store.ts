@@ -8,7 +8,8 @@ const saga = createSagaMiddleware();
 
 export const store = configureStore({
 	reducer: {
-		categories: categoriesSlice
+		categories: categoriesSlice,
+		filteredCategories: categoriesSlice
 	},
 	middleware: [saga]
 });

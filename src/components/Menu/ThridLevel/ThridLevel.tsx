@@ -1,15 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
+import { Pages } from '../../../redux/categoriesSlice';
+
 import { firstLevel } from '../Menu';
 
 import styles from './ThridLevel.module.scss';
-
-interface Pages {
-	alias: string;
-	title: string;
-	_id: string;
-	category: string;
-}
 
 export const ThridLevel = ({
 	pages,
