@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
-import { Pages } from '../../../redux/categoriesSlice';
+import { routes } from '../../../helpers';
 
-import { firstLevel } from '../Menu';
+import type { Pages } from '../../../interfaces';
 
 import styles from './ThridLevel.module.scss';
 
@@ -17,7 +17,7 @@ export const ThridLevel = ({
 		{pages.map(item => (
 			<li key={item._id}>
 				<NavLink
-					to={firstLevel[firstLevelActive]?.path + item.alias}
+					to={routes[firstLevelActive] + item.alias}
 					className={({ isActive }) =>
 						isActive ? 'active' : undefined
 					}

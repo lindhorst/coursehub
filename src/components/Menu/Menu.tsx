@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { routes } from '../../helpers';
+
 import SecondLevel from './SecondLevel/SecondLevel';
 
 import { ReactComponent as CoursesIcon } from './icons/courses.svg';
@@ -9,28 +11,28 @@ import { ReactComponent as SchoolIcon } from './icons/school.svg';
 
 import styles from './Menu.module.scss';
 
-export const firstLevel = [
-	{ icon: <CoursesIcon />, text: 'Курсы', path: '/courses/' },
-	{ icon: <SchoolIcon />, text: 'Для школьников', path: '/school/' },
-	{ icon: <OtherIcon />, text: 'Прочее', path: '/other/' }
+const firstLevel = [
+	{ icon: <CoursesIcon />, text: 'Курсы' },
+	{ icon: <SchoolIcon />, text: 'Для школьников' },
+	{ icon: <OtherIcon />, text: 'Прочее' }
 ];
 
 export default function Menu() {
 	const [active, setActive] = useState<number | null>(null);
 	const { pathname } = useLocation();
-	const firstPath = pathname.slice(0, pathname.lastIndexOf('/') + 1);
+	const route = pathname.slice(0, pathname.lastIndexOf('/') + 1);
 
 	useEffect(() => setActive(null), [pathname]);
 
 	return (
 		<ul className={styles.wrapper}>
-			{firstLevel.map(({ icon, text, path }, i) => (
+			{firstLevel.map(({ icon, text }, i) => (
 				<Fragment key={i}>
 					<li
 						onClick={() => setActive(i === active ? null : i)}
 						className={
 							styles.item +
-							(i === active || path === firstPath
+							(i === active || routes[i] === route
 								? ' active'
 								: '')
 						}
@@ -39,7 +41,7 @@ export default function Menu() {
 						{text}
 					</li>
 
-					{(i === active || path === firstPath) && (
+					{(i === active || routes[i] === route) && (
 						<SecondLevel firstLevelActive={i} />
 					)}
 				</Fragment>

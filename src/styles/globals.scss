@@ -5,6 +5,7 @@
 }
 
 body {
+	color: var(--dark-grey);
 	background-color: #f5f6f8;
 }
 
@@ -22,5 +23,6 @@ ul {
 
 :root {
 	--violet: #7653fc;
+	--dark-grey: #3b434e;
 	--grey: #787d85;
 }

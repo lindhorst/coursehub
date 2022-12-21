@@ -61,8 +61,17 @@
 		font-size: 15px;
 		font-weight: 500;
 
-		li {
-			cursor: pointer;
+		a {
+			display: block;
+			color: var(--dark-grey);
+			text-decoration: none;
 		}
+	}
+
+	p {
+		display: block;
+		padding-bottom: 8px;
+		font-size: 15px;
+		text-align: center;
 	}
 }

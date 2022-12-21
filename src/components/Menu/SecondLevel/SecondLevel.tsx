@@ -15,16 +15,14 @@ export default function SecondLevel({
 	const [active, setActive] = useState<number | null>(null);
 	const { categories } = useAppSelector(({ categories }) => categories);
 	const { pathname } = useLocation();
-	const secondPath = pathname.slice(pathname.lastIndexOf('/') + 1);
+	const route = pathname.slice(pathname.lastIndexOf('/') + 1);
 
 	useEffect(() => setActive(null), [pathname]);
 
 	return (
 		<ul className={styles.wrapper}>
 			{categories[firstLevelActive]?.map((item, i) => {
-				const res = item.pages.some(
-					({ alias }) => alias === secondPath
-				);
+				const res = item.pages.some(({ alias }) => alias === route);
 
 				return (
 					<Fragment key={i}>

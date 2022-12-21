@@ -1,4 +1,5 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
@@ -10,10 +11,21 @@ import styles from './Search.module.scss';
 
 export default function Search() {
 	const [showResult, setShowResult] = useState(false);
+	const [inFocus, setInFocus] = useState(false);
 	const dispatch = useAppDispatch();
 	const { filteredCategories } = useAppSelector(
 		({ filteredCategories }) => filteredCategories
 	);
+
+	useEffect(() => {
+		const mouseup = () => {
+			!inFocus && setShowResult(false);
+		};
+
+		window.addEventListener('mouseup', mouseup);
+
+		return () => window.removeEventListener('mouseup', mouseup);
+	});
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -28,8 +40,14 @@ export default function Search() {
 			tabIndex={0}
 			className={styles.wrapper}
 			onSubmit={onSubmit}
-			onFocus={() => setShowResult(true)}
-			onBlur={() => setShowResult(false)}
+			onFocus={() => {
+				setShowResult(true);
+				setInFocus(true);
+			}}
+			onBlur={() => {
+				!showResult && setShowResult(false);
+				setInFocus(false);
+			}}
 		>
 			<input
 				type="text"
@@ -37,6 +55,7 @@ export default function Search() {
 				name="input"
 				required
 				minLength={2}
+				autoComplete="off"
 			/>
 
 			<button>
@@ -48,10 +67,26 @@ export default function Search() {
 					<hr />
 
 					<ul>
-						{filteredCategories.map(({ title, _id }) => (
-							<li key={_id}>{title}</li>
+						{filteredCategories.map(item => (
+							<li key={item._id}>
+								<Link
+									to={item.route + item.alias}
+									onMouseDown={() => setShowResult(true)}
+									onClick={() => setShowResult(false)}
+								>
+									{item.title}
+								</Link>
+							</li>
 						))}
 					</ul>
+				</>
+			)}
+
+			{showResult && filteredCategories.length <= 0 && (
+				<>
+					<hr />
+
+					<p>Совпадений не найдено</p>
 				</>
 			)}
 		</form>
