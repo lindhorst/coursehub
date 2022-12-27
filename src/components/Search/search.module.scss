@@ -65,6 +65,10 @@
 			display: block;
 			color: var(--dark-grey);
 			text-decoration: none;
+
+			&:hover {
+				color: var(--violet);
+			}
 		}
 	}
 

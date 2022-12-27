@@ -12,6 +12,7 @@ import styles from './Search.module.scss';
 export default function Search() {
 	const [showResult, setShowResult] = useState(false);
 	const [inFocus, setInFocus] = useState(false);
+	const [wasOnSubmit, setOnWasSubmit] = useState(false);
 	const dispatch = useAppDispatch();
 	const { filteredCategories } = useAppSelector(
 		({ filteredCategories }) => filteredCategories
@@ -33,11 +34,12 @@ export default function Search() {
 		const { input } = e.target as HTMLFormElement;
 
 		dispatch(setFilteredCategories(input.value));
+		setOnWasSubmit(true);
 	};
 
 	return (
 		<form
-			tabIndex={0}
+			tabIndex={-1}
 			className={styles.wrapper}
 			onSubmit={onSubmit}
 			onFocus={() => {
@@ -62,33 +64,34 @@ export default function Search() {
 				<SearchIcon />
 			</button>
 
-			{showResult && filteredCategories.length !== 0 && (
-				<>
-					<hr />
+			{showResult &&
+				(filteredCategories.length > 0 ? (
+					<>
+						<hr />
 
-					<ul>
-						{filteredCategories.map(item => (
-							<li key={item._id}>
-								<Link
-									to={item.route + item.alias}
-									onMouseDown={() => setShowResult(true)}
-									onClick={() => setShowResult(false)}
-								>
-									{item.title}
-								</Link>
-							</li>
-						))}
-					</ul>
-				</>
-			)}
+						<ul>
+							{filteredCategories.map(item => (
+								<li key={item._id}>
+									<Link
+										to={item.route + item.alias}
+										onMouseDown={() => setShowResult(true)}
+										onClick={() => setShowResult(false)}
+									>
+										{item.title}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</>
+				) : (
+					wasOnSubmit && (
+						<>
+							<hr />
 
-			{showResult && filteredCategories.length <= 0 && (
-				<>
-					<hr />
-
-					<p>Совпадений не найдено</p>
-				</>
-			)}
+							<p>Совпадений не найдено</p>
+						</>
+					)
+				))}
 		</form>
 	);
 }

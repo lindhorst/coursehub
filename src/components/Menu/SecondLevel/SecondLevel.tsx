@@ -27,8 +27,13 @@ export default function SecondLevel({
 				return (
 					<Fragment key={i}>
 						<li
+							tabIndex={0}
 							className={styles.item}
 							onClick={() => setActive(i === active ? null : i)}
+							onKeyDown={e =>
+								e.key === 'Enter' &&
+								setActive(i === active ? null : i)
+							}
 						>
 							{item._id.secondCategory}
 						</li>

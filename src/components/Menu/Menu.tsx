@@ -29,7 +29,12 @@ export default function Menu() {
 			{firstLevel.map(({ icon, text }, i) => (
 				<Fragment key={i}>
 					<li
+						tabIndex={0}
 						onClick={() => setActive(i === active ? null : i)}
+						onKeyDown={e =>
+							e.key === 'Enter' &&
+							setActive(i === active ? null : i)
+						}
 						className={
 							styles.item +
 							(i === active || routes[i] === route

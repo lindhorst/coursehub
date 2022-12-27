@@ -25,23 +25,16 @@ const categoriesSlice = createSlice({
 
 			state.categories.forEach((array, i) => {
 				array.forEach(({ _id, pages }) => {
-					let res = pages.filter(item => {
+					pages.forEach(item => {
 						if (
 							_id.secondCategory.match(regex) ||
 							item.category.match(regex)
 						) {
 							item.route = routes[i];
 
-							return item;
+							state.filteredCategories.push(item);
 						}
-
-						return false;
 					});
-
-					if (res.length) {
-						res = state.filteredCategories.concat(res);
-						state.filteredCategories = res;
-					}
 				});
 			});
 		}
