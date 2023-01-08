@@ -1,0 +1,44 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: auto 1fr auto auto;
+	align-items: center;
+	justify-items: left;
+
+	h1 {
+		margin-right: 19px;
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 41px;
+	}
+
+	span {
+		padding: 3px 10px;
+
+		font-size: 14px;
+		font-weight: 600;
+		color: #fff;
+
+		background-color: #b3c0d9;
+		border-radius: 20px;
+	}
+}
+
+.btn {
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 400;
+	color: #000;
+
+	&:last-child {
+		margin-left: 43px;
+	}
+
+	svg {
+		margin-right: 8px;
+	}
+}
+
+.active {
+	font-weight: 700;
+	color: var(--violet);
+}

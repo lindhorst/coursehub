@@ -1,30 +1,44 @@
-import { NavLink } from 'react-router-dom';
-
-import { routes } from '../../../helpers';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import type { Pages } from '../../../interfaces';
+import { setTitle } from '../../../redux/couesesSlice';
 
 import styles from './ThridLevel.module.scss';
 
 export const ThridLevel = ({
-	pages,
-	firstLevelActive
+	category,
+	parentActive
 }: {
-	pages: Pages[];
-	firstLevelActive: number;
-}) => (
-	<ul className={styles.wrapper}>
-		{pages.map(item => (
-			<li key={item._id}>
-				<NavLink
-					to={routes[firstLevelActive] + item.alias}
-					className={({ isActive }) =>
-						isActive ? 'active' : undefined
-					}
-				>
-					{item.category}
-				</NavLink>
-			</li>
-		))}
-	</ul>
-);
+	category: { pages: Pages[]; _id: { secondCategory: string } };
+	parentActive: number;
+}) => {
+	const dispath = useDispatch();
+	const route = useLocation().pathname.slice(1);
+
+	useEffect(() => {
+		category.pages.forEach(page => {
+			if (route === page.alias) {
+				dispath(setTitle(page.title));
+			}
+		});
+	});
+
+	return (
+		<ul className={styles.wrapper}>
+			{category.pages.map(page => (
+				<li key={page._id}>
+					<NavLink
+						to={`${page.alias}?category=${category._id.secondCategory}&parentId=${parentActive}`}
+						className={({ isActive }) =>
+							isActive ? 'active' : undefined
+						}
+					>
+						{page.category}
+					</NavLink>
+				</li>
+			))}
+		</ul>
+	);
+};

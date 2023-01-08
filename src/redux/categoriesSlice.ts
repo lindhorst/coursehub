@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { routes } from '../helpers';
 import type { Pages } from '../interfaces';
 
 interface Categories {
@@ -23,16 +22,16 @@ const categoriesSlice = createSlice({
 
 			const regex = new RegExp(`${payload}`, 'ig');
 
-			state.categories.forEach((array, i) => {
-				array.forEach(({ _id, pages }) => {
-					pages.forEach(item => {
+			state.categories.forEach((category, i) => {
+				category.forEach(({ _id, pages }) => {
+					pages.forEach(page => {
 						if (
 							_id.secondCategory.match(regex) ||
-							item.category.match(regex)
+							page.category.match(regex)
 						) {
-							item.route = routes[i];
+							page.path = `${page.alias}?category=${_id.secondCategory}&parentId=${i}`;
 
-							state.filteredCategories.push(item);
+							state.filteredCategories.push(page);
 						}
 					});
 				});

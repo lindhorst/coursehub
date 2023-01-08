@@ -1,11 +1,14 @@
 .wrapper {
-	padding: 3px 0 10px;
-	font-size: 14px;
-	font-weight: 500;
+	margin-top: 13px;
 
 	a {
 		display: block;
-		color: var(--grey);
+
+		margin-bottom: 10px;
+
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--grey-dark);
 		text-decoration: none;
 
 		&:hover {

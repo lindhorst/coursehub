@@ -1,7 +1,5 @@
-import { Fragment, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
-import { routes } from '../../helpers';
+import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import SecondLevel from './SecondLevel/SecondLevel';
 
@@ -19,37 +17,35 @@ const firstLevel = [
 
 export default function Menu() {
 	const [active, setActive] = useState<number | null>(null);
-	const { pathname } = useLocation();
-	const route = pathname.slice(0, pathname.lastIndexOf('/') + 1);
-
-	useEffect(() => setActive(null), [pathname]);
+	const [searchParams] = useSearchParams();
+	const searchParam = searchParams.get('parentId');
 
 	return (
-		<ul className={styles.wrapper}>
+		<ul>
 			{firstLevel.map(({ icon, text }, i) => (
-				<Fragment key={i}>
-					<li
+				<li key={i}>
+					<div
 						tabIndex={0}
+						className={
+							styles.item +
+							(i === active || searchParam === `${i}`
+								? ' active'
+								: '')
+						}
 						onClick={() => setActive(i === active ? null : i)}
 						onKeyDown={e =>
 							e.key === 'Enter' &&
 							setActive(i === active ? null : i)
 						}
-						className={
-							styles.item +
-							(i === active || routes[i] === route
-								? ' active'
-								: '')
-						}
 					>
 						{icon}
 						{text}
-					</li>
+					</div>
 
-					{(i === active || routes[i] === route) && (
-						<SecondLevel firstLevelActive={i} />
+					{(i === active || searchParam === `${i}`) && (
+						<SecondLevel active={i} />
 					)}
-				</Fragment>
+				</li>
 			))}
 		</ul>
 	);

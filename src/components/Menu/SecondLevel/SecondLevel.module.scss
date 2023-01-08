@@ -1,17 +1,23 @@
 .wrapper {
-	margin: -8px 0 0 12px;
-	padding: 8px 0 0 32px;
+	display: grid;
+	row-gap: 10px;
 
-	font-size: 12px;
-	font-weight: 300;
+	margin: -8px 0 20px 12px;
+	padding: 8px 0 10px 32px;
 
-	border-left: 1px solid #dfdfdf;
-
-	li {
-		margin-bottom: 10px;
-	}
+	border-left: solid 1px #dfdfdf;
 }
 
 .item {
+	cursor: pointer;
+
+	display: block;
+
+	font-size: 12px;
+	font-weight: 300;
 	text-transform: uppercase;
+
+	&:hover {
+		color: var(--violet);
+	}
 }

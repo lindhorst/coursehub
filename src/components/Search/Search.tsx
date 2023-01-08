@@ -12,21 +12,21 @@ import styles from './Search.module.scss';
 export default function Search() {
 	const [showResult, setShowResult] = useState(false);
 	const [inFocus, setInFocus] = useState(false);
-	const [wasOnSubmit, setOnWasSubmit] = useState(false);
+	const [wasOnSubmit, setWasOnSubmit] = useState(false);
 	const dispatch = useAppDispatch();
 	const { filteredCategories } = useAppSelector(
 		({ filteredCategories }) => filteredCategories
 	);
 
 	useEffect(() => {
-		const mouseup = () => {
-			!inFocus && setShowResult(false);
-		};
-
 		window.addEventListener('mouseup', mouseup);
 
 		return () => window.removeEventListener('mouseup', mouseup);
 	});
+
+	const mouseup = () => {
+		!inFocus && setShowResult(false);
+	};
 
 	const onSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -34,7 +34,7 @@ export default function Search() {
 		const { input } = e.target as HTMLFormElement;
 
 		dispatch(setFilteredCategories(input.value));
-		setOnWasSubmit(true);
+		setWasOnSubmit(true);
 	};
 
 	return (
@@ -73,7 +73,7 @@ export default function Search() {
 							{filteredCategories.map(item => (
 								<li key={item._id}>
 									<Link
-										to={item.route + item.alias}
+										to={item.path!}
 										onMouseDown={() => setShowResult(true)}
 										onClick={() => setShowResult(false)}
 									>

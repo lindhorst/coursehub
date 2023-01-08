@@ -1,3 +1,4 @@
+import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import Search from '../Search/Search';
 
@@ -15,6 +16,10 @@ export default function App() {
 
 				<Menu />
 			</aside>
+
+			<div>
+				<Header />
+			</div>
 		</div>
 	);
 }

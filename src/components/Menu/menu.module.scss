@@ -1,28 +1,21 @@
-.wrapper {
-	display: grid;
-	row-gap: 20px;
-	color: var(--grey);
-
-	li {
-		cursor: pointer;
-
-		&:hover {
-			color: var(--violet);
-		}
-	}
-}
-
 .item {
+	cursor: pointer;
+
 	display: grid;
-	grid-auto-flow: column;
+	grid-template-columns: auto 1fr;
 	column-gap: 20px;
 	align-items: center;
-	justify-content: left;
+
+	margin-bottom: 22px;
 
 	font-size: 18px;
 	font-weight: 500;
 
-	&:hover svg {
-		fill: var(--violet);
+	&:hover {
+		color: var(--violet);
+
+		svg {
+			fill: var(--violet);
+		}
 	}
 }

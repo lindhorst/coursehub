@@ -3,5 +3,5 @@ export interface Pages {
 	title: string;
 	_id: string;
 	category: string;
-	route?: string;
+	path?: string;
 }

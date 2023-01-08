@@ -3,13 +3,15 @@ import createSagaMiddleware from 'redux-saga';
 
 import rootSaga from './sagas';
 import categoriesSlice from './categoriesSlice';
+import couesesSlice from './couesesSlice';
 
 const saga = createSagaMiddleware();
 
 export const store = configureStore({
 	reducer: {
 		categories: categoriesSlice,
-		filteredCategories: categoriesSlice
+		filteredCategories: categoriesSlice,
+		title: couesesSlice
 	},
 	middleware: [saga]
 });
